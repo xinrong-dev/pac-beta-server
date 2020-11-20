@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p.header{
+            text-align: center;
+            font-weight: bold;
+            font-size: 22px;
+        }
+        a.verify-btn{
+            text-decoration: none;
+            padding: 10px 100px;
+            background: rgb(96 144 2);
+            color: white;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+    <body>
+        <p class = "header">Welcome to your PAC Account!</p>
+        <p>Hi, {{ username }}</p>
+        <p>Simpley verify your email address so we know this account belongs to you.</p>
+        <br>
+        <div style = "text-align: center;">
+            <a class = "verify-btn" href = "{{ link }}">Verify</a>
+        </div>
+        <br>
+        If you didn't initiate this request, you can ignore this message.
+        <p>
+            All the best,
+        </p>
+        <p>
+            PAC
+        </p>
+    </body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation</title>
+    <style>
+        body{ color: blue; }
+    </style>
+</head>
+<body>
+    {% if success %}
+        アカウントの確認が成功しました。
+        <a href="{{ link }}">ここを</a>クリックしてログインしてください。
+    {% else %}
+        トークンが無効です。
+    {% endif %}
+</body>
+</html>
