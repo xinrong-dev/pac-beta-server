@@ -134,8 +134,8 @@ class CustomJWTSerializer(JSONWebTokenSerializer):
                 new_user = Member(firebase_id = firebase_id, social_type = social_type)
                 if attrs.get('email') != None:
                     new_user.email = attrs.get('email')
-                if attrs.get('avatar') != None:
-                    new_user.avatar = attrs.get('avatar')
+                # if attrs.get('avatar') != None:
+                #     new_user.avatar = attrs.get('avatar')
                 if attrs.get('username') != None:
                     new_user.username = attrs.get('username')
                 
