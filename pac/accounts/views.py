@@ -124,7 +124,7 @@ def get_friendship_user(request):
         offset = get_param['offset']
         start_index = page * size + offset
         if is_rank:
-            members = sorted(Member.objects.filter(is_active = True), key = lambda a: a.followers_count(), reverse=True)[start_index:start_index + size]
+            members = sorted(Member.objects.filter(is_active = True, is_superuser = False), key = lambda a: a.followers_count(), reverse=True)[start_index:start_index + size]
             returned_user = [ item.id for item in members ]
             # print(returned_user)
         else:
@@ -155,17 +155,21 @@ def get_total_friends(request):
     cur_user = request.user
     is_new = request.GET.get('is_new')
     is_active = request.GET.get('is_active')
-    if is_new and is_active:
-        if is_active == "1":
-            friendship_count = cur_user.following.filter(followee__is_active = True).count()
+    is_rank = request.GET.get('is_rank')
+    if is_new and is_active and is_rank:
+        if is_rank == "1":
+            friendship_count = Member.objects.filter(is_active = True, is_superuser = False).count()
         else:
-            if is_new == "1":
-                from datetime import datetime, timedelta
-                threshold_time = datetime.now() - timedelta(days = 3)
-                friendship_count = cur_user.followers.filter(created_at__gt = threshold_time, follower__is_active = True).count()
+            if is_active == "1":
+                friendship_count = cur_user.following.filter(followee__is_active = True).count()
             else:
-                friendship_count = cur_user.followers.filter(follower__is_active = True).count()
-        return Response(friendship_count, status=status.HTTP_200_OK)
+                if is_new == "1":
+                    from datetime import datetime, timedelta
+                    threshold_time = datetime.now() - timedelta(days = 3)
+                    friendship_count = cur_user.followers.filter(created_at__gt = threshold_time, follower__is_active = True).count()
+                else:
+                    friendship_count = cur_user.followers.filter(follower__is_active = True).count()
+            return Response(friendship_count, status=status.HTTP_200_OK)
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
