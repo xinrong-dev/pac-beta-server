@@ -169,7 +169,7 @@ def get_total_friends(request):
                     friendship_count = cur_user.followers.filter(created_at__gt = threshold_time, follower__is_active = True).count()
                 else:
                     friendship_count = cur_user.followers.filter(follower__is_active = True).count()
-            return Response(friendship_count, status=status.HTTP_200_OK)
+        return Response(friendship_count, status=status.HTTP_200_OK)
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
