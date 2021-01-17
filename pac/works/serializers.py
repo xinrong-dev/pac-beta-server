@@ -84,7 +84,9 @@ class WorkSerializer(serializers.ModelSerializer):
     comments_count = serializers.SerializerMethodField(read_only = True)
 
     class Meta:
-        fields = ('id', 'title', 'creator', 'collaborators', 'tags', 'url', 'cc_setting', 'images', 'created_at', 'hearts', 'comments_count', 'status', 'sounds', 'content')
+        fields = ('id', 'title', 'creator', 'collaborators', 'tags', 'url', 
+            'cc_setting', 'images', 'created_at', 'hearts', 'comments_count',
+            'status', 'sounds', 'content', 'updated_at')
         model = Work
 
     def get_queryset(self):
