@@ -13,27 +13,31 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 import datetime
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Read env file
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+# Reading .env file
+environ.Env.read_env(".env")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'ln6bqw(n0^mq*_*h2%qm_x!cv&c8c&5ij2i@n65+g7jntj#=17'
+SECRET_KEY = env('SECRET_KEY')
+DEBUG = env('DEBUG')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-
-try:
-    from .local_settings import *
-except ImportError:
-    pass
+ALLOWED_HOSTS = [
+    "*"
+]
 
 # Application definition
-
 INSTALLED_APPS = [
     'simpleui',                        # Admin UI
     'django.contrib.admin',
@@ -93,12 +97,9 @@ WSGI_APPLICATION = 'pac.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': env.db()
+}
 
 # specify user model
 AUTH_USER_MODEL = 'accounts.Member'
@@ -274,24 +275,18 @@ SWAGGER_SETTINGS = {
 SITE_HEADER = 'PACシステム'
 SITE_TITLE = 'PACシステム'
 
-# import dj_database_url
-# DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-
-# Configure Django App for Heroku.
-# import django_heroku
-# django_heroku.settings(locals())
-
-# notifications settings
-# NOTIFICATIONS_CHANNELS = {
-#     'websocket': 'chats.channels.BroadCastWebSocketChannel'
-# }
-
-# NOTIFICATIONS_USE_WEBSOCKET = True
-# NOTIFICATIONS_RABBIT_MQ_URL = 'http://192.168.0.254:15672'
-
 # django resized
 DJANGORESIZED_DEFAULT_QUALITY = 75
 DJANGORESIZED_DEFAULT_KEEP_META = True
 DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'JPEG'
 DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'JPEG': ".jpg"}
 DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
+
+# AWS S3
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+DEFAULT_FILE_STORAGE = env('DEFAULT_FILE_STORAGE')
+AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
+
+CLIENT_MAX_UPLOAD_SIZE = env('CLIENT_MAX_UPLOAD_SIZE')
+FIREBASE_ACCOUNT_KEY = env('FIREBASE_ACCOUNT_KEY')
