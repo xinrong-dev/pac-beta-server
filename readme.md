@@ -11,8 +11,14 @@ A web service for artists working in several fields
 - Chat between artists
 - Following between users
 - Multimedia and tags for art works
+
+## Main Features
+
+- DRF RestfulAPI 
 - SimpleUI for django admin
 - Firebase OAuth2
+- Gunicorn for Websocker Server
+- Swagger API Documentation
 
 ## Getting Started
 

@@ -2,7 +2,7 @@ import eventlet
 import pymysql
 import socketio
 import json
-from pac.local_settings import DATABASES
+from pac.settings import DATABASES
 
 conn = pymysql.connect(
     host=DATABASES['default']['HOST'],
