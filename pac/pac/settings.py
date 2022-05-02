@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-import os, datetime
+import os
+import datetime
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -46,7 +47,7 @@ INSTALLED_APPS = [
     'taggit_serializer',                 # tag serializer
     'rest_framework',                   # restful framework
     'corsheaders',                      # cors
-    'accounts',                         
+    'accounts',
     'works',
     'chats',
     'drf_yasg',                         # api test
@@ -168,9 +169,9 @@ JWT_AUTH = {
     'JWT_SECRET_KEY': SECRET_KEY,
     'JWT_VERIFY': True,
     'JWT_VERIFY_EXPIRATION': True,
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(days = 1),
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
     'JWT_ALLOW_REFRESH': True,
-    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days = 7),
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
     'JWT_AUTH_HEADER_PREFIX': 'Bearer',
     'JWT_RESPONSE_PAYLOAD_HANDLER': 'accounts.payload.jwt_response_payload_handler',
     # 'JWT_PAYLOAD_HANDLER': 'accounts.jwt.jwt_payload_handler',
@@ -188,7 +189,7 @@ SIMPLEUI_CONFIG = {
         {
             'name': '作品管理',
             'icon': 'fa fa-university',
-            'models':[
+            'models': [
                 {
                     'name': '作品',
                     'icon': 'fa fa-archive',
@@ -209,7 +210,7 @@ SIMPLEUI_CONFIG = {
         {
             'name': '基礎データ',
             'icon': 'fa fa-database',
-            'models':[
+            'models': [
                 {
                     'name': 'ジャンル',
                     'icon': 'fa fa-book',

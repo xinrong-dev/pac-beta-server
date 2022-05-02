@@ -25,8 +25,8 @@ from drf_yasg import openapi
 admin.sites.AdminSite.site_header = settings.SITE_HEADER
 admin.site.site_title = settings.SITE_TITLE
 
-schema_view = get_schema_view( 
-    openapi.Info( 
+schema_view = get_schema_view(
+    openapi.Info(
         title="Snippets API",
         default_version='v1',
         description="Test description",

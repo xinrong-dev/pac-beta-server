@@ -9,7 +9,7 @@ import uwsgi
 def application(env, start_response):
     """Setup the Websocket Server and read messages off the queue."""
     connection = pika.BlockingConnection(
-    pika.ConnectionParameters(host='localhost')
+        pika.ConnectionParameters(host='localhost')
     )
     channel = connection.channel()
 
@@ -38,7 +38,7 @@ def application(env, start_response):
             connection.add_timeout(30, keepalive)
         except OSError as error:
             print(error)
-            sys.exit(1) # Kill process and force uWSGI to Respawn
+            sys.exit(1)   # Kill process and force uWSGI to Respawn
 
     keepalive()
 
