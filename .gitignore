@@ -123,3 +123,5 @@ media/
 /pac/uwsgi.ini
 /pac/uwsgi.pid
 /pac/uwsgi.status
+serviceAccountKey.json
+serviceAccountKeyLocal.json
